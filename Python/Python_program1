@@ -1,0 +1,13 @@
+def remove_duplicates(s):
+    seen = []
+    result = ""
+    for char in s:
+        if char not in seen:
+            seen.append(char)
+            result += char
+    return result
+
+# Test cases
+print(remove_duplicates("programming"))  # progamin
+print(remove_duplicates("hello world"))  # helo wrd
+print(remove_duplicates("aabbccdd"))     # abcd
