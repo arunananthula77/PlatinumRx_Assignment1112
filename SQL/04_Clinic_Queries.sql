@@ -1,6 +1,4 @@
 
--- Q1. Revenue from each sales channel in a given year (2021)
-
 SELECT
     sales_channel,
     SUM(amount) AS total_revenue
@@ -9,7 +7,6 @@ WHERE YEAR(datetime) = 2021
 GROUP BY sales_channel
 ORDER BY total_revenue DESC;
 
--- Q2. Top 10 most valuable customers in a given year (2021)
 
 SELECT
     cs.uid,
@@ -22,8 +19,7 @@ GROUP BY cs.uid, c.name
 ORDER BY total_spend DESC
 LIMIT 10;
 
--- Q3. Month-wise revenue, expense, profit, and
---     profitability status for year 2021
+
 
 WITH rev AS (
     SELECT
@@ -55,8 +51,7 @@ FROM rev r
 LEFT JOIN exp e ON r.month = e.month
 ORDER BY r.month;
 
--- Q4. Most profitable clinic for each city in a given month
---     (Change '2021-09' to your target month)
+
 
 WITH clinic_profit AS (
     SELECT
@@ -83,9 +78,6 @@ FROM ranked
 WHERE rnk = 1
 ORDER BY city;
 
-
--- Q5. Second least profitable clinic for each state
---     in a given month (Change '2021-09' to your target month)
 
 WITH clinic_profit AS (
     SELECT
