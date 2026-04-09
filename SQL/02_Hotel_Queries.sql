@@ -1,4 +1,3 @@
--- Q1. For every user, get user_id and last booked room_no
 
 SELECT u.user_id, b.room_no
 FROM users u
@@ -9,9 +8,6 @@ WHERE b.booking_date = (
     WHERE b2.user_id = u.user_id
 );
 
--- Q2. booking_id and total billing amount for bookings
---     created in November 2021
-
 SELECT
     bc.booking_id,
     SUM(bc.item_quantity * i.item_rate) AS total_billing_amount
@@ -21,8 +17,6 @@ JOIN bookings b ON bc.booking_id = b.booking_id
 WHERE strftime('%Y-%m', b.booking_date) = '2021-11'
 GROUP BY bc.booking_id;
 
--- Q3. bill_id and bill amount for bills in October 2021
---     where bill amount > 1000
 
 SELECT
     bc.bill_id,
@@ -34,8 +28,7 @@ GROUP BY bc.bill_id
 HAVING SUM(bc.item_quantity * i.item_rate) > 1000;
 
 
--- Q4. Most ordered and least ordered item of each month
---     in year 2021
+
 
 WITH monthly_orders AS (
     SELECT
@@ -62,8 +55,6 @@ GROUP BY month
 ORDER BY month;
 
 
--- Q5. Customers with the second highest bill value
---     of each month in year 2021
 
 WITH bill_totals AS (
     SELECT
